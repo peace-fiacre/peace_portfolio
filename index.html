@@ -1,429 +1,508 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Peace Fiacre EGOUDJOBI — Portfolio</title>
-  <meta name="description" content="Portfolio de Peace Fiacre EGOUDJOBI, élève ingénieur en Génie Électrique à l'EPAC (UAC), Bénin." />
-  <meta property="og:title" content="Peace Fiacre EGOUDJOBI — Ingénieur Électrique & Robotique" />
-  <meta property="og:description" content="Systèmes embarqués, ROS2, FPGA, IA. Membre de Sirius Space Association et MA64 Robotics." />
-  <meta property="og:type" content="website" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23060a10'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='900' font-size='18' fill='%232878ff'>P</text></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: #060a10;
-      color: #e8f0ff;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 18px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Peace Fiacre EGOUDJOBI — Portfolio</title>
+<meta name="description" content="Portfolio de Peace Fiacre EGOUDJOBI, élève ingénieur en Génie Électrique à l'EPAC (UAC), Bénin." />
+<meta property="og:title" content="Peace Fiacre EGOUDJOBI — Ingénieur Électrique & Robotique" />
+<meta property="og:description" content="Systèmes embarqués, ROS2, FPGA, IA. Membre de Sirius Space Association et MA64 Robotics." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23060a10'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='900' font-size='18' fill='%232878ff'>P</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #060a10;
+  color: #e8f0ff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+.pf-grid-bg {
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(40,120,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40,120,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none; z-index: 0;
+}
+.pf-content { position: relative; z-index: 1; }
+.pf-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  border-bottom: 1px solid rgba(40,120,255,0.2);
+  background: rgba(6,10,16,0.95);
+  backdrop-filter: blur(12px);
+  position: sticky; top: 0; z-index: 100;
+}
+.pf-logo {
+  font-family: 'Orbitron', monospace; font-size: 22px; font-weight: 900;
+  color: #fff; letter-spacing: 3px; text-decoration: none;
+}
+.pf-logo span { color: #2878ff; }
+.pf-nav-center { display: flex; gap: 32px; list-style: none; }
+.pf-nav-center a {
+  font-family: 'Share Tech Mono', monospace; font-size: 12px;
+  color: rgba(232,240,255,0.55); text-decoration: none;
+  letter-spacing: 2px; text-transform: uppercase;
+  transition: color 0.25s; position: relative; padding-bottom: 4px;
+}
+.pf-nav-center a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: #2878ff; transition: width 0.25s;
+}
+.pf-nav-center a:hover,
+.pf-nav-center a.nav-active { color: #2878ff; }
+.pf-nav-center a:hover::after,
+.pf-nav-center a.nav-active::after { width: 100%; }
+.pf-nav-right { display: flex; align-items: center; gap: 10px; }
+.pf-lang-btn {
+  font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 2px;
+  padding: 6px 14px; border: 1px solid rgba(40,120,255,0.25);
+  background: transparent; color: rgba(232,240,255,0.45); cursor: pointer; transition: all 0.25s;
+}
+.pf-lang-btn.active { border-color: #2878ff; color: #2878ff; background: rgba(40,120,255,0.08); }
+.pf-lang-btn:hover { color: #2878ff; border-color: rgba(40,120,255,0.5); }
+.pf-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+.pf-hamburger span { display: block; width: 24px; height: 2px; background: rgba(232,240,255,0.7); transition: all 0.3s; }
+.pf-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.pf-hamburger.open span:nth-child(2) { opacity: 0; }
+.pf-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.pf-mobile-menu {
+  display: none; position: fixed; top: 63px; left: 0; right: 0; z-index: 99;
+  background: rgba(6,10,16,0.98); border-bottom: 1px solid rgba(40,120,255,0.2);
+  flex-direction: column; padding: 24px 28px; gap: 20px;
+  transform: translateY(-10px); opacity: 0; transition: all 0.3s;
+}
+.pf-mobile-menu.open { display: flex; transform: translateY(0); opacity: 1; }
+.pf-mobile-menu a {
+  font-family: 'Share Tech Mono', monospace; font-size: 13px;
+  color: rgba(232,240,255,0.65); text-decoration: none; letter-spacing: 2px;
+  text-transform: uppercase; padding: 10px 0;
+  border-bottom: 1px solid rgba(40,120,255,0.08); transition: color 0.2s;
+}
+.pf-mobile-menu a:hover { color: #2878ff; }
+.pf-mobile-lang { display: flex; gap: 10px; padding-top: 4px; }
+.pf-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.pf-section { padding: 88px 0; border-bottom: 1px solid rgba(40,120,255,0.08); }
+.pf-section-header { display: flex; align-items: center; gap: 20px; margin-bottom: 56px; }
+.pf-section-title {
+  font-family: 'Orbitron', monospace; font-size: 26px; font-weight: 700;
+  color: #fff; letter-spacing: 2px; white-space: nowrap;
+}
+.pf-section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(40,120,255,0.35), transparent); }
+.pf-fade { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.pf-fade.visible { opacity: 1; transform: translateY(0); }
+.pf-fade-delay-1 { transition-delay: 0.08s; }
+.pf-fade-delay-2 { transition-delay: 0.16s; }
+.pf-fade-delay-3 { transition-delay: 0.24s; }
+.pf-fade-delay-4 { transition-delay: 0.32s; }
+.pf-fade-delay-5 { transition-delay: 0.40s; }
+.pf-hero {
+  display: grid; grid-template-columns: 1fr auto; gap: 64px;
+  padding: 96px 0 88px; align-items: center;
+  border-bottom: 1px solid rgba(40,120,255,0.08); min-height: 90vh;
+}
+.pf-hero-tag {
+  font-family: 'Share Tech Mono', monospace; font-size: 12px;
+  color: #2878ff; letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.pf-hero-tag::before { content: ''; display: inline-block; width: 28px; height: 1px; background: #2878ff; }
+.pf-hero-name {
+  font-family: 'Orbitron', monospace; font-size: 56px; font-weight: 900;
+  line-height: 1.05; color: #fff; margin-bottom: 10px;
+}
+.pf-hero-name span { color: #2878ff; }
+.pf-hero-sub {
+  font-family: 'Orbitron', monospace; font-size: 13px;
+  color: rgba(232,240,255,0.45); letter-spacing: 2px; margin-bottom: 32px;
+}
+.pf-hero-desc {
+  font-size: 19px; line-height: 1.8;
+  color: rgba(232,240,255,0.75); max-width: 600px; margin-bottom: 24px;
+}
+.pf-orgs { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+.pf-org-badge {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 2px;
+  padding: 6px 14px; border: 1px solid rgba(40,120,255,0.3); color: rgba(40,120,255,0.85);
+  text-transform: uppercase; transition: border-color 0.25s, background 0.25s;
+}
+.pf-org-badge:hover { border-color: #2878ff; background: rgba(40,120,255,0.08); }
+.pf-quote {
+  border-left: 2px solid #2878ff; padding: 14px 22px;
+  background: rgba(40,120,255,0.06); margin-bottom: 40px;
+  font-style: italic; color: rgba(232,240,255,0.65); font-size: 18px;
+}
+.pf-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.pf-btn {
+  font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; padding: 14px 32px;
+  border: 1px solid rgba(40,120,255,0.5); background: transparent;
+  color: #2878ff; cursor: pointer; text-decoration: none; display: inline-block;
+  transition: background 0.25s, border-color 0.25s, transform 0.15s;
+}
+.pf-btn:hover { background: rgba(40,120,255,0.12); transform: translateY(-2px); }
+.pf-btn:active { transform: translateY(0); }
+.pf-btn.accent { background: #2878ff; color: #fff; border-color: #2878ff; }
+.pf-btn.accent:hover { background: #4a90ff; border-color: #4a90ff; }
+.pf-photo-frame { display: flex; justify-content: center; align-items: center; }
+#photoUnique { position: static; width: auto; height: auto; display: flex !important; }
+.pf-photo-box {
+  width: 300px; height: 370px; border: 1px solid rgba(40,120,255,0.25);
+  background: rgba(40,120,255,0.04);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; gap: 14px; overflow: hidden; transition: border-color 0.3s;
+}
+.pf-photo-box:hover { border-color: rgba(40,120,255,0.55); }
+.pf-photo-box::before { content: ''; position: absolute; top: -1px; left: -1px; width: 32px; height: 32px; border-top: 2px solid #2878ff; border-left: 2px solid #2878ff; }
+.pf-photo-box::after  { content: ''; position: absolute; bottom: -1px; right: -1px; width: 32px; height: 32px; border-bottom: 2px solid rgba(255,255,255,0.2); border-right: 2px solid rgba(255,255,255,0.2); }
+.pf-photo-img { width: 100%; height: 100%; object-fit: cover; display: none; }
+.pf-skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.pf-skill-cat {
+  background: rgba(40,120,255,0.04); border: 1px solid rgba(40,120,255,0.14);
+  padding: 26px; transition: border-color 0.25s, background 0.25s, transform 0.25s;
+}
+.pf-skill-cat:hover { border-color: rgba(40,120,255,0.38); background: rgba(40,120,255,0.07); transform: translateY(-3px); }
+.pf-skill-cat-title {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #2878ff;
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 18px;
+  padding-bottom: 10px; border-bottom: 1px solid rgba(40,120,255,0.15);
+}
+.pf-skill-item {
+  font-size: 16px; color: rgba(232,240,255,0.8); padding: 7px 0;
+  border-bottom: 1px solid rgba(40,120,255,0.07); display: flex; align-items: center; gap: 10px;
+}
+.pf-skill-item:last-child { border-bottom: none; }
+.pf-skill-item::before { content: '▸'; color: #2878ff; font-size: 11px; flex-shrink: 0; }
+.pf-projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pf-project-card {
+  background: rgba(40,120,255,0.03); border: 1px solid rgba(40,120,255,0.13);
+  padding: 26px; position: relative;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+}
+.pf-project-card:hover {
+  border-color: rgba(40,120,255,0.42); background: rgba(40,120,255,0.06);
+  transform: translateY(-5px); box-shadow: 0 14px 44px rgba(40,120,255,0.11);
+}
+.pf-project-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 44px; background: #2878ff;
+  transition: height 0.3s, opacity 0.3s;
+}
+.pf-project-card:hover::before { height: 100%; opacity: 0.3; }
+.pf-project-img {
+  width: 100%; height: 140px; background: rgba(40,120,255,0.05);
+  border: 1px dashed rgba(40,120,255,0.2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin-bottom: 20px; font-size: 30px; gap: 8px; overflow: hidden;
+  transition: border-color 0.3s;
+}
+.pf-project-img img { width: 100%; height: 100%; object-fit: cover; }
+.pf-project-card:hover .pf-project-img { border-color: rgba(40,120,255,0.38); }
+.pf-project-type {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px;
+  color: rgba(232,240,255,0.38); letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.pf-contrib-badge {
+  font-family: 'Share Tech Mono', monospace; font-size: 9px; padding: 2px 8px;
+  border: 1px solid rgba(40,120,255,0.4); color: #2878ff;
+  letter-spacing: 1px; background: rgba(40,120,255,0.06);
+}
+.pf-project-title {
+  font-family: 'Orbitron', monospace; font-size: 16px; font-weight: 700;
+  color: #fff; margin-bottom: 12px; margin-top: 6px;
+}
+.pf-project-desc {
+  font-size: 15px; color: rgba(232,240,255,0.65); line-height: 1.65;
+  margin-bottom: 18px; flex: 1;
+}
+.pf-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+.pf-tag {
+  font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 1px;
+  padding: 4px 10px; border: 1px solid rgba(40,120,255,0.22); color: rgba(40,120,255,0.75);
+  transition: border-color 0.2s, background 0.2s;
+}
+.pf-tag:hover { border-color: #2878ff; background: rgba(40,120,255,0.1); }
+.pf-project-links { display: flex; gap: 14px; margin-top: auto; }
+.pf-link {
+  font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 1px;
+  color: #2878ff; text-decoration: none; display: flex; align-items: center; gap: 5px;
+  opacity: 0.75; transition: opacity 0.2s, transform 0.2s;
+}
+.pf-link:hover { opacity: 1; transform: translateX(3px); }
+.pf-timeline { position: relative; padding-left: 36px; }
+.pf-timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 1px; background: linear-gradient(180deg, #2878ff, rgba(40,120,255,0.1)); }
+.pf-tl-item { position: relative; margin-bottom: 40px; }
+.pf-tl-dot { position: absolute; left: -40px; top: 6px; width: 10px; height: 10px; border: 1px solid #2878ff; background: #060a10; transition: background 0.25s, transform 0.25s; }
+.pf-tl-item:hover .pf-tl-dot { background: #2878ff; transform: scale(1.3); }
+.pf-tl-year { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #2878ff; letter-spacing: 2px; margin-bottom: 5px; }
+.pf-tl-title { font-family: 'Orbitron', monospace; font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.pf-tl-place { font-size: 16px; color: rgba(232,240,255,0.5); margin-bottom: 7px; }
+.pf-tl-desc { font-size: 15px; color: rgba(232,240,255,0.55); line-height: 1.65; }
+.pf-info-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 44px; }
+.pf-info-badge {
+  display: flex; align-items: center; gap: 12px; padding: 14px 20px;
+  border: 1px solid rgba(40,120,255,0.15); background: rgba(40,120,255,0.04);
+  transition: border-color 0.25s, transform 0.25s;
+}
+.pf-info-badge:hover { border-color: rgba(40,120,255,0.38); transform: translateY(-2px); }
+.pf-info-badge-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(232,240,255,0.38); letter-spacing: 2px; display: block; margin-bottom: 3px; }
+.pf-info-badge-val { font-size: 16px; color: rgba(232,240,255,0.85); }
+.pf-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.pf-contact-item {
+  display: flex; align-items: center; gap: 16px; padding: 16px 18px;
+  border: 1px solid rgba(40,120,255,0.1); margin-bottom: 12px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+}
+.pf-contact-item:hover { border-color: rgba(40,120,255,0.38); background: rgba(40,120,255,0.04); transform: translateX(4px); }
+.pf-contact-icon { width: 38px; height: 38px; border: 1px solid rgba(40,120,255,0.3); display: flex; align-items: center; justify-content: center; color: #2878ff; font-size: 16px; flex-shrink: 0; }
+.pf-contact-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(232,240,255,0.38); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
+.pf-contact-val { font-size: 16px; color: rgba(232,240,255,0.85); }
+.pf-rs-title { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(232,240,255,0.38); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.pf-rs-links { display: flex; flex-direction: column; gap: 12px; }
+.pf-rs-link {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+  border: 1px solid rgba(40,120,255,0.11); text-decoration: none;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+}
+.pf-rs-link:hover { border-color: rgba(40,120,255,0.42); background: rgba(40,120,255,0.05); transform: translateX(4px); }
+.pf-rs-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-family: 'Share Tech Mono', monospace; font-size: 13px; color: #2878ff; font-weight: bold; flex-shrink: 0; }
+.pf-rs-name { font-family: 'Share Tech Mono', monospace; font-size: 14px; color: #2878ff; }
+.pf-rs-handle { font-size: 14px; color: rgba(232,240,255,0.38); margin-left: auto; }
+.pf-footer { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(40,120,255,0.1); }
+.pf-footer-logo { font-family: 'Orbitron', monospace; font-size: 15px; font-weight: 900; color: rgba(255,255,255,0.2); letter-spacing: 3px; }
+.pf-footer-logo span { color: rgba(40,120,255,0.38); }
+.pf-footer-copy { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(232,240,255,0.2); }
+.pf-status { display: flex; align-items: center; gap: 9px; font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(232,240,255,0.38); }
+.pf-status-dot { width: 7px; height: 7px; border-radius: 50%; background: #2878ff; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.pf-back-top {
+  position: fixed; bottom: 32px; right: 32px; z-index: 200;
+  width: 46px; height: 46px;
+  border: 1px solid rgba(40,120,255,0.4); background: rgba(6,10,16,0.9);
+  color: #2878ff; font-size: 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s, border-color 0.25s;
+  backdrop-filter: blur(8px);
+}
+.pf-back-top.visible { opacity: 1; pointer-events: all; }
+.pf-back-top:hover { border-color: #2878ff; transform: translateY(-3px); }
 
-    /* GRID BG */
-    .pf-grid-bg {
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(40,120,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(40,120,255,0.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none; z-index: 0;
-    }
-    .pf-content { position: relative; z-index: 1; }
+/* ── RESPONSIVE TABLET ── */
+@media (max-width: 1024px) {
+  .pf-inner { padding: 0 32px; }
+  .pf-nav { padding: 16px 32px; }
+  .pf-hero { gap: 40px; }
+  .pf-hero-name { font-size: 44px; }
+  .pf-skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .pf-projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
-    /* ── NAV ── */
-    .pf-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 48px;
-      border-bottom: 1px solid rgba(40,120,255,0.2);
-      background: rgba(6,10,16,0.95);
-      backdrop-filter: blur(12px);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .pf-logo {
-      font-family: 'Orbitron', monospace; font-size: 22px; font-weight: 900;
-      color: #fff; letter-spacing: 3px; text-decoration: none;
-    }
-    .pf-logo span { color: #2878ff; }
-    .pf-nav-center { display: flex; gap: 32px; list-style: none; }
-    .pf-nav-center a {
-      font-family: 'Share Tech Mono', monospace; font-size: 12px;
-      color: rgba(232,240,255,0.55); text-decoration: none;
-      letter-spacing: 2px; text-transform: uppercase;
-      transition: color 0.25s; position: relative; padding-bottom: 4px;
-    }
-    .pf-nav-center a::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 1px; background: #2878ff; transition: width 0.25s;
-    }
-    .pf-nav-center a:hover,
-    .pf-nav-center a.nav-active { color: #2878ff; }
-    .pf-nav-center a:hover::after,
-    .pf-nav-center a.nav-active::after { width: 100%; }
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  .pf-nav { padding: 14px 20px; }
+  .pf-nav-center { display: none; }
+  .pf-hamburger { display: flex; }
+  .pf-inner { padding: 0 20px; }
 
-    .pf-nav-right { display: flex; align-items: center; gap: 10px; }
-    .pf-lang-btn {
-      font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 2px;
-      padding: 6px 14px; border: 1px solid rgba(40,120,255,0.25);
-      background: transparent; color: rgba(232,240,255,0.45); cursor: pointer; transition: all 0.25s;
-    }
-    .pf-lang-btn.active { border-color: #2878ff; color: #2878ff; background: rgba(40,120,255,0.08); }
-    .pf-lang-btn:hover { color: #2878ff; border-color: rgba(40,120,255,0.5); }
+  /* HERO */
+  .pf-hero {
+    display: flex;
+    flex-direction: column;
+    padding: 36px 0 40px;
+    min-height: unset;
+    gap: 0;
+  }
 
-    /* HAMBURGER */
-    .pf-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
-    .pf-hamburger span { display: block; width: 24px; height: 2px; background: rgba(232,240,255,0.7); transition: all 0.3s; }
-    .pf-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .pf-hamburger.open span:nth-child(2) { opacity: 0; }
-    .pf-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* Bloc nom + photo côte à côte */
+  .pf-hero-top-row {
+    display: grid;
+    grid-template-columns: 1fr 130px;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 22px;
+  }
 
-    /* MOBILE DRAWER */
-    .pf-mobile-menu {
-      display: none; position: fixed; top: 63px; left: 0; right: 0; z-index: 99;
-      background: rgba(6,10,16,0.98); border-bottom: 1px solid rgba(40,120,255,0.2);
-      flex-direction: column; padding: 24px 28px; gap: 20px;
-      transform: translateY(-10px); opacity: 0; transition: all 0.3s;
-    }
-    .pf-mobile-menu.open { display: flex; transform: translateY(0); opacity: 1; }
-    .pf-mobile-menu a {
-      font-family: 'Share Tech Mono', monospace; font-size: 13px;
-      color: rgba(232,240,255,0.65); text-decoration: none; letter-spacing: 2px;
-      text-transform: uppercase; padding: 10px 0;
-      border-bottom: 1px solid rgba(40,120,255,0.08); transition: color 0.2s;
-    }
-    .pf-mobile-menu a:hover { color: #2878ff; }
-    .pf-mobile-lang { display: flex; gap: 10px; padding-top: 4px; }
+  /* Photo : une seule, repositionnée en absolute dans la hero */
+  .pf-hero {
+    position: relative;
+  }
 
-    /* ── WRAPPER CENTRÉ ── */
-    .pf-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
+  #photoUnique {
+    display: block !important;
+    position: absolute;
+    top: 36px;
+    right: 20px;
+    width: 130px;
+    height: 165px;
+  }
 
-    /* ── SECTIONS ── */
-    .pf-section { padding: 88px 0; border-bottom: 1px solid rgba(40,120,255,0.08); }
-    .pf-section-header { display: flex; align-items: center; gap: 20px; margin-bottom: 56px; }
-    .pf-section-title {
-      font-family: 'Orbitron', monospace; font-size: 26px; font-weight: 700;
-      color: #fff; letter-spacing: 2px; white-space: nowrap;
-    }
-    .pf-section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(40,120,255,0.35), transparent); }
+  .pf-photo-box {
+    width: 130px;
+    height: 165px;
+  }
 
-    /* FADE-IN */
-    .pf-fade { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .pf-fade.visible { opacity: 1; transform: translateY(0); }
-    .pf-fade-delay-1 { transition-delay: 0.08s; }
-    .pf-fade-delay-2 { transition-delay: 0.16s; }
-    .pf-fade-delay-3 { transition-delay: 0.24s; }
-    .pf-fade-delay-4 { transition-delay: 0.32s; }
-    .pf-fade-delay-5 { transition-delay: 0.40s; }
+  /* Décaler le texte pour laisser de la place à la photo */
+  .pf-hero > div:first-child {
+    padding-right: 150px;
+  }
 
-    /* ── HERO ── */
-    .pf-hero {
-      display: grid; grid-template-columns: 1fr auto; gap: 64px;
-      padding: 96px 0 88px; align-items: center;
-      border-bottom: 1px solid rgba(40,120,255,0.08); min-height: 90vh;
-    }
-    .pf-hero-tag {
-      font-family: 'Share Tech Mono', monospace; font-size: 12px;
-      color: #2878ff; letter-spacing: 4px; text-transform: uppercase;
-      margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
-    }
-    .pf-hero-tag::before { content: ''; display: inline-block; width: 28px; height: 1px; background: #2878ff; }
-    .pf-hero-name {
-      font-family: 'Orbitron', monospace; font-size: 56px; font-weight: 900;
-      line-height: 1.05; color: #fff; margin-bottom: 10px;
-    }
-    .pf-hero-name span { color: #2878ff; }
-    .pf-hero-sub {
-      font-family: 'Orbitron', monospace; font-size: 13px;
-      color: rgba(232,240,255,0.45); letter-spacing: 2px; margin-bottom: 32px;
-    }
-    .pf-hero-desc {
-      font-size: 19px; line-height: 1.8;
-      color: rgba(232,240,255,0.75); max-width: 600px; margin-bottom: 24px;
-    }
-    .pf-orgs { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
-    .pf-org-badge {
-      font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 2px;
-      padding: 6px 14px; border: 1px solid rgba(40,120,255,0.3); color: rgba(40,120,255,0.85);
-      text-transform: uppercase; transition: border-color 0.25s, background 0.25s;
-    }
-    .pf-org-badge:hover { border-color: #2878ff; background: rgba(40,120,255,0.08); }
-    .pf-quote {
-      border-left: 2px solid #2878ff; padding: 14px 22px;
-      background: rgba(40,120,255,0.06); margin-bottom: 40px;
-      font-style: italic; color: rgba(232,240,255,0.65); font-size: 18px;
-    }
-    .pf-btns { display: flex; gap: 16px; flex-wrap: wrap; }
-    .pf-btn {
-      font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 2px;
-      text-transform: uppercase; padding: 14px 32px;
-      border: 1px solid rgba(40,120,255,0.5); background: transparent;
-      color: #2878ff; cursor: pointer; text-decoration: none; display: inline-block;
-      transition: background 0.25s, border-color 0.25s, transform 0.15s;
-    }
-    .pf-btn:hover { background: rgba(40,120,255,0.12); transform: translateY(-2px); }
-    .pf-btn:active { transform: translateY(0); }
-    .pf-btn.accent { background: #2878ff; color: #fff; border-color: #2878ff; }
-    .pf-btn.accent:hover { background: #4a90ff; border-color: #4a90ff; }
+  .pf-hero-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .pf-hero-tag::before { width: 16px; }
 
-    /* PHOTO */
-    .pf-photo-frame { display: flex; justify-content: center; align-items: center; }
-    .pf-photo-box {
-      width: 300px; height: 370px; border: 1px solid rgba(40,120,255,0.25);
-      background: rgba(40,120,255,0.04);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      position: relative; gap: 14px; overflow: hidden; transition: border-color 0.3s;
-    }
-    .pf-photo-box:hover { border-color: rgba(40,120,255,0.55); }
-    .pf-photo-box::before { content: ''; position: absolute; top: -1px; left: -1px; width: 32px; height: 32px; border-top: 2px solid #2878ff; border-left: 2px solid #2878ff; }
-    .pf-photo-box::after  { content: ''; position: absolute; bottom: -1px; right: -1px; width: 32px; height: 32px; border-bottom: 2px solid rgba(255,255,255,0.2); border-right: 2px solid rgba(255,255,255,0.2); }
-    .pf-photo-img { width: 100%; height: 100%; object-fit: cover; display: none; }
-    .pf-photo-placeholder { width: 96px; height: 96px; border: 1px dashed rgba(40,120,255,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(40,120,255,0.5); font-size: 38px; }
-    .pf-photo-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(40,120,255,0.35); letter-spacing: 2px; text-align: center; padding: 0 20px; }
+  .pf-hero-name {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
 
-    /* ── SKILLS — grille 3 colonnes ── */
-    .pf-skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .pf-skill-cat {
-      background: rgba(40,120,255,0.04); border: 1px solid rgba(40,120,255,0.14);
-      padding: 26px; transition: border-color 0.25s, background 0.25s, transform 0.25s;
-    }
-    .pf-skill-cat:hover { border-color: rgba(40,120,255,0.38); background: rgba(40,120,255,0.07); transform: translateY(-3px); }
-    .pf-skill-cat-title {
-      font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #2878ff;
-      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 18px;
-      padding-bottom: 10px; border-bottom: 1px solid rgba(40,120,255,0.15);
-    }
-    .pf-skill-item {
-      font-size: 16px; color: rgba(232,240,255,0.8); padding: 7px 0;
-      border-bottom: 1px solid rgba(40,120,255,0.07); display: flex; align-items: center; gap: 10px;
-    }
-    .pf-skill-item:last-child { border-bottom: none; }
-    .pf-skill-item::before { content: '▸'; color: #2878ff; font-size: 11px; flex-shrink: 0; }
+  .pf-hero-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: rgba(232,240,255,0.65);
+    line-height: 1.75;
+  }
 
-    /* ── PROJECTS — grille 3 colonnes ── */
-    .pf-projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .pf-project-card {
-      background: rgba(40,120,255,0.03); border: 1px solid rgba(40,120,255,0.13);
-      padding: 26px; position: relative;
-      transition: border-color 0.3s, background 0.3s, transform 0.3s, box-shadow 0.3s;
-      display: flex; flex-direction: column;
-    }
-    .pf-project-card:hover {
-      border-color: rgba(40,120,255,0.42); background: rgba(40,120,255,0.06);
-      transform: translateY(-5px); box-shadow: 0 14px 44px rgba(40,120,255,0.11);
-    }
-    .pf-project-card::before {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 3px; height: 44px; background: #2878ff;
-      transition: height 0.3s, opacity 0.3s;
-    }
-    .pf-project-card:hover::before { height: 100%; opacity: 0.3; }
-    .pf-project-img {
-      width: 100%; height: 140px; background: rgba(40,120,255,0.05);
-      border: 1px dashed rgba(40,120,255,0.2);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      margin-bottom: 20px; font-size: 30px; gap: 8px; overflow: hidden;
-      transition: border-color 0.3s;
-    }
-    .pf-project-img img { width: 100%; height: 100%; object-fit: cover; }
-    .pf-project-card:hover .pf-project-img { border-color: rgba(40,120,255,0.38); }
-    .pf-project-img-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; letter-spacing: 1px; color: rgba(40,120,255,0.3); }
-    .pf-project-type {
-      font-family: 'Share Tech Mono', monospace; font-size: 10px;
-      color: rgba(232,240,255,0.38); letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-    }
-    .pf-contrib-badge {
-      font-family: 'Share Tech Mono', monospace; font-size: 9px; padding: 2px 8px;
-      border: 1px solid rgba(40,120,255,0.4); color: #2878ff;
-      letter-spacing: 1px; background: rgba(40,120,255,0.06);
-    }
-    .pf-project-title {
-      font-family: 'Orbitron', monospace; font-size: 16px; font-weight: 700;
-      color: #fff; margin-bottom: 12px; margin-top: 6px;
-    }
-    .pf-project-desc {
-      font-size: 15px; color: rgba(232,240,255,0.65); line-height: 1.65;
-      margin-bottom: 18px; flex: 1;
-    }
-    .pf-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
-    .pf-tag {
-      font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 1px;
-      padding: 4px 10px; border: 1px solid rgba(40,120,255,0.22); color: rgba(40,120,255,0.75);
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .pf-tag:hover { border-color: #2878ff; background: rgba(40,120,255,0.1); }
-    .pf-project-links { display: flex; gap: 14px; margin-top: auto; }
-    .pf-link {
-      font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 1px;
-      color: #2878ff; text-decoration: none; display: flex; align-items: center; gap: 5px;
-      opacity: 0.75; transition: opacity 0.2s, transform 0.2s;
-    }
-    .pf-link:hover { opacity: 1; transform: translateX(3px); }
+  .pf-hero-desc {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(232,240,255,0.85);
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
 
-    /* ── TIMELINE ── */
-    .pf-timeline { position: relative; padding-left: 36px; }
-    .pf-timeline::before { content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 1px; background: linear-gradient(180deg, #2878ff, rgba(40,120,255,0.1)); }
-    .pf-tl-item { position: relative; margin-bottom: 40px; }
-    .pf-tl-dot { position: absolute; left: -40px; top: 6px; width: 10px; height: 10px; border: 1px solid #2878ff; background: #060a10; transition: background 0.25s, transform 0.25s; }
-    .pf-tl-item:hover .pf-tl-dot { background: #2878ff; transform: scale(1.3); }
-    .pf-tl-year { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #2878ff; letter-spacing: 2px; margin-bottom: 5px; }
-    .pf-tl-title { font-family: 'Orbitron', monospace; font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 5px; }
-    .pf-tl-place { font-size: 16px; color: rgba(232,240,255,0.5); margin-bottom: 7px; }
-    .pf-tl-desc { font-size: 15px; color: rgba(232,240,255,0.55); line-height: 1.65; }
+  .pf-quote {
+    font-size: 14px;
+    padding: 10px 16px;
+    margin-bottom: 18px;
+    color: rgba(232,240,255,0.75);
+  }
 
-    .pf-info-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 44px; }
-    .pf-info-badge {
-      display: flex; align-items: center; gap: 12px; padding: 14px 20px;
-      border: 1px solid rgba(40,120,255,0.15); background: rgba(40,120,255,0.04);
-      transition: border-color 0.25s, transform 0.25s;
-    }
-    .pf-info-badge:hover { border-color: rgba(40,120,255,0.38); transform: translateY(-2px); }
-    .pf-info-badge-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(232,240,255,0.38); letter-spacing: 2px; display: block; margin-bottom: 3px; }
-    .pf-info-badge-val { font-size: 16px; color: rgba(232,240,255,0.85); }
+  .pf-btns { flex-direction: column; width: 100%; }
+  .pf-btn { text-align: center; padding: 13px 20px; }
 
-    /* ── CONTACT ── */
-    .pf-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-    .pf-contact-item {
-      display: flex; align-items: center; gap: 16px; padding: 16px 18px;
-      border: 1px solid rgba(40,120,255,0.1); margin-bottom: 12px;
-      text-decoration: none; color: inherit;
-      transition: border-color 0.25s, transform 0.25s, background 0.25s;
-    }
-    .pf-contact-item:hover { border-color: rgba(40,120,255,0.38); background: rgba(40,120,255,0.04); transform: translateX(4px); }
-    .pf-contact-icon { width: 38px; height: 38px; border: 1px solid rgba(40,120,255,0.3); display: flex; align-items: center; justify-content: center; color: #2878ff; font-size: 16px; flex-shrink: 0; }
-    .pf-contact-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(232,240,255,0.38); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
-    .pf-contact-val { font-size: 16px; color: rgba(232,240,255,0.85); }
-    .pf-rs-title { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(232,240,255,0.38); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
-    .pf-rs-links { display: flex; flex-direction: column; gap: 12px; }
-    .pf-rs-link {
-      display: flex; align-items: center; gap: 14px; padding: 14px 16px;
-      border: 1px solid rgba(40,120,255,0.11); text-decoration: none;
-      transition: border-color 0.25s, background 0.25s, transform 0.25s;
-    }
-    .pf-rs-link:hover { border-color: rgba(40,120,255,0.42); background: rgba(40,120,255,0.05); transform: translateX(4px); }
-    .pf-rs-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-family: 'Share Tech Mono', monospace; font-size: 13px; color: #2878ff; font-weight: bold; flex-shrink: 0; }
-    .pf-rs-name { font-family: 'Share Tech Mono', monospace; font-size: 14px; color: #2878ff; }
-    .pf-rs-handle { font-size: 14px; color: rgba(232,240,255,0.38); margin-left: auto; }
+  /* SECTIONS */
+  .pf-section { padding: 48px 0; }
+  .pf-section-title { font-size: 18px; }
 
-    /* ── FOOTER ── */
-    .pf-footer { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(40,120,255,0.1); }
-    .pf-footer-logo { font-family: 'Orbitron', monospace; font-size: 15px; font-weight: 900; color: rgba(255,255,255,0.2); letter-spacing: 3px; }
-    .pf-footer-logo span { color: rgba(40,120,255,0.38); }
-    .pf-footer-copy { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(232,240,255,0.2); }
-    .pf-status { display: flex; align-items: center; gap: 9px; font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(232,240,255,0.38); }
-    .pf-status-dot { width: 7px; height: 7px; border-radius: 50%; background: #2878ff; animation: blink 2s infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  /* SKILLS 2 colonnes */
+  .pf-skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .pf-skill-cat { padding: 14px 12px; }
+  .pf-skill-cat-title { font-size: 9px; letter-spacing: 2px; margin-bottom: 10px; }
+  .pf-skill-item {
+    font-size: 14px;
+    color: rgba(232,240,255,0.9);
+    padding: 5px 0;
+  }
 
-    /* BACK TO TOP */
-    .pf-back-top {
-      position: fixed; bottom: 32px; right: 32px; z-index: 200;
-      width: 46px; height: 46px;
-      border: 1px solid rgba(40,120,255,0.4); background: rgba(6,10,16,0.9);
-      color: #2878ff; font-size: 20px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s, border-color 0.25s;
-      backdrop-filter: blur(8px);
-    }
-    .pf-back-top.visible { opacity: 1; pointer-events: all; }
-    .pf-back-top:hover { border-color: #2878ff; transform: translateY(-3px); }
+  /* PROJECTS 1 colonne */
+  .pf-projects-grid { grid-template-columns: 1fr; gap: 14px; }
+  .pf-project-card { padding: 20px; }
+  .pf-project-img { height: 110px; }
+  .pf-project-title { font-size: 15px; }
+  .pf-project-desc {
+    font-size: 14px;
+    color: rgba(232,240,255,0.82);
+    line-height: 1.65;
+  }
+  .pf-project-type {
+    font-size: 10px;
+    color: rgba(232,240,255,0.55);
+  }
 
-    /* ── RESPONSIVE TABLET ── */
-    @media (max-width: 1024px) {
-      .pf-inner { padding: 0 32px; }
-      .pf-nav { padding: 16px 32px; }
-      .pf-hero { gap: 40px; }
-      .pf-hero-name { font-size: 44px; }
-      .pf-skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .pf-projects-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+  /* TIMELINE */
+  .pf-tl-title { font-size: 15px; }
+  .pf-tl-desc { font-size: 14px; color: rgba(232,240,255,0.72); }
+  .pf-tl-place { font-size: 14px; }
 
-    /* ── RESPONSIVE MOBILE ── */
-    @media (max-width: 768px) {
-      body { font-size: 16px; }
-      .pf-nav { padding: 14px 20px; }
-      .pf-nav-center { display: none; }
-      .pf-hamburger { display: flex; }
-      .pf-inner { padding: 0 20px; }
+  /* CONTACT */
+  .pf-contact-grid { grid-template-columns: 1fr; gap: 28px; }
+  .pf-contact-val { font-size: 14px; }
 
-      .pf-hero {
-        grid-template-columns: 1fr; padding: 56px 0 52px;
-        min-height: unset; gap: 36px;
-      }
-      .pf-hero-name { font-size: 36px; }
-      .pf-hero-sub { font-size: 11px; }
-      .pf-hero-desc { font-size: 17px; }
-      .pf-photo-frame { display: none; }
+  .pf-info-row { flex-direction: column; gap: 10px; }
+  .pf-info-badge { width: 100%; }
 
-      .pf-section { padding: 56px 0; }
-      .pf-section-title { font-size: 20px; }
+  .pf-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 24px 20px;
+  }
+  .pf-status { justify-content: center; }
+  .pf-back-top { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 17px; }
+}
 
-      .pf-skills-grid { grid-template-columns: 1fr; gap: 14px; }
-      .pf-projects-grid { grid-template-columns: 1fr; }
-      .pf-contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .pf-info-row { flex-direction: column; gap: 14px; }
-      .pf-info-badge { width: 100%; }
-      .pf-footer { flex-direction: column; gap: 14px; text-align: center; padding: 28px 20px; }
-      .pf-status { justify-content: center; }
-      .pf-back-top { bottom: 20px; right: 20px; }
-    }
-
-    @media (max-width: 480px) {
-      .pf-hero-name { font-size: 30px; }
-      .pf-btns { flex-direction: column; }
-      .pf-btn { text-align: center; }
-    }
-  </style>
+@media (max-width: 480px) {
+  .pf-hero-name { font-size: 24px; }
+  .pf-photo-box { width: 110px; height: 140px; }
+  .pf-skills-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-
 <div class="pf-grid-bg"></div>
 <div class="pf-content">
 
-  <!-- NAV -->
-  <nav class="pf-nav">
-    <a class="pf-logo" href="#about">P<span>.</span>FIACRE</a>
-    <ul class="pf-nav-center">
-      <li><a href="#about"     data-fr="À propos"    data-en="About">À propos</a></li>
-      <li><a href="#skills"    data-fr="Compétences" data-en="Skills">Compétences</a></li>
-      <li><a href="#projects"  data-fr="Projets"     data-en="Projects">Projets</a></li>
-      <li><a href="#education" data-fr="Formation"   data-en="Education">Formation</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="pf-nav-right">
-      <button class="pf-lang-btn active" id="btn-fr" onclick="setLang('fr')">FR</button>
-      <button class="pf-lang-btn"        id="btn-en" onclick="setLang('en')">EN</button>
-      <button class="pf-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- MOBILE DRAWER -->
-  <div class="pf-mobile-menu" id="mobileMenu">
-    <a href="#about"     data-fr="À propos"     data-en="About"     onclick="closeMenu()">À propos</a>
-    <a href="#skills"    data-fr="Compétences"  data-en="Skills"    onclick="closeMenu()">Compétences</a>
-    <a href="#projects"  data-fr="Projets"      data-en="Projects"  onclick="closeMenu()">Projets</a>
-    <a href="#education" data-fr="Formation"    data-en="Education" onclick="closeMenu()">Formation</a>
-    <a href="#contact"   onclick="closeMenu()">Contact</a>
-    <div class="pf-mobile-lang">
-      <button class="pf-lang-btn active" id="btn-fr-m" onclick="setLang('fr')">FR</button>
-      <button class="pf-lang-btn"        id="btn-en-m" onclick="setLang('en')">EN</button>
-    </div>
+<!-- NAV -->
+<nav class="pf-nav">
+  <a class="pf-logo" href="#about">P<span>.</span>FIACRE</a>
+  <ul class="pf-nav-center">
+    <li><a href="#about"     data-fr="À propos"    data-en="About">À propos</a></li>
+    <li><a href="#skills"    data-fr="Compétences" data-en="Skills">Compétences</a></li>
+    <li><a href="#projects"  data-fr="Projets"     data-en="Projects">Projets</a></li>
+    <li><a href="#education" data-fr="Formation"   data-en="Education">Formation</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="pf-nav-right">
+    <button class="pf-lang-btn active" id="btn-fr" onclick="setLang('fr')">FR</button>
+    <button class="pf-lang-btn"        id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="pf-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
 
-  <!-- ═══════ ABOUT ═══════ -->
-  <div class="pf-inner">
-    <section class="pf-hero" id="about">
+<!-- MOBILE DRAWER -->
+<div class="pf-mobile-menu" id="mobileMenu">
+  <a href="#about"     data-fr="À propos"     data-en="About"     onclick="closeMenu()">À propos</a>
+  <a href="#skills"    data-fr="Compétences"  data-en="Skills"    onclick="closeMenu()">Compétences</a>
+  <a href="#projects"  data-fr="Projets"      data-en="Projects"  onclick="closeMenu()">Projets</a>
+  <a href="#education" data-fr="Formation"    data-en="Education" onclick="closeMenu()">Formation</a>
+  <a href="#contact"   onclick="closeMenu()">Contact</a>
+  <div class="pf-mobile-lang">
+    <button class="pf-lang-btn active" id="btn-fr-m" onclick="setLang('fr')">FR</button>
+    <button class="pf-lang-btn"        id="btn-en-m" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<!-- ═══════ ABOUT ═══════ -->
+<div class="pf-inner">
+<section class="pf-hero" id="about">
+  <div>
+    <!-- BLOC NOM + PHOTO côte à côte sur mobile -->
+    <div class="pf-hero-top-row">
       <div>
         <div class="pf-hero-tag pf-fade"
           data-fr="Élève Ingénieur · Génie Électrique"
@@ -436,396 +515,358 @@
         <div class="pf-hero-sub pf-fade pf-fade-delay-2">
           Robotique · Systèmes Embarqués · IA · Sciences Aérospatiales
         </div>
-        <p class="pf-hero-desc pf-fade pf-fade-delay-3"
-          data-fr="Élève ingénieur en Génie Électrique à l'EPAC (UAC), Bénin. Animé par la conviction que les mathématiques et l'ingénierie sont des leviers puissants pour résoudre des problèmes concrets, je conçois des systèmes embarqués, robotiques et intelligents. Passionné par la robotique, l'IA et les sciences aérospatiales. Membre de Sirius Space Association et MA64 Robotics."
-          data-en="Electrical Engineering student at EPAC (UAC), Benin. Driven by the conviction that mathematics and engineering are powerful tools for solving real-world problems, I design embedded, robotic and intelligent systems. Passionate about robotics, AI and aerospace sciences. Member of Sirius Space Association and MA64 Robotics.">
-          Élève ingénieur en Génie Électrique à l'EPAC (UAC), Bénin. Animé par la conviction que les mathématiques et l'ingénierie sont des leviers puissants pour résoudre des problèmes concrets, je conçois des systèmes embarqués, robotiques et intelligents. Passionné par la robotique, l'IA et les sciences aérospatiales. Membre de Sirius Space Association et MA64 Robotics.
-        </p>
-        <div class="pf-orgs pf-fade pf-fade-delay-4">
-          <span class="pf-org-badge">Sirius Space Association</span>
-          <span class="pf-org-badge">MA64 Robotics</span>
-        </div>
-        <blockquote class="pf-quote pf-fade pf-fade-delay-4">
-          "Some watch the future. Engineers build it."
-        </blockquote>
-        <div class="pf-btns pf-fade pf-fade-delay-5">
-          <!-- REMPLACE href="#" par href="cv/Peace_Fiacre_CV.pdf" -->
-          <a class="pf-btn accent" href="Mon_CV_Peace_2026.pdf"
-            data-fr="Télécharger CV" data-en="Download CV">Télécharger CV</a>
-          <a class="pf-btn" href="https://github.com/peace-fiacre" target="_blank">GitHub</a>
-        </div>
       </div>
-      <div class="pf-photo-frame pf-fade pf-fade-delay-3">
-        <div class="pf-photo-box">
-          <!--
-            PHOTO :
-            1. Copie ta photo dans le dossier du site (ex: peace.jpg)
-            2. Change src="ta-photo.jpg" par src="peace.jpg"
-            3. Ajoute style="display:block;" à la balise <img>
-            4. Supprime les deux lignes placeholder et label en dessous
-          -->
-          <img class="pf-photo-img" src="Ma_photo.png" alt="Peace Fiacre EGOUDJOBI" style="display:block;" />
-          
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ═══════ SKILLS ═══════ -->
-  <div class="pf-inner">
-    <section class="pf-section" id="skills">
-      <div class="pf-section-header pf-fade">
-        <h2 class="pf-section-title"
-          data-fr="Compétences Techniques"
-          data-en="Technical Skills">Compétences Techniques</h2>
-        <div class="pf-section-line"></div>
-      </div>
-      <div class="pf-skills-grid">
-
-        <div class="pf-skill-cat pf-fade pf-fade-delay-1">
-          <div class="pf-skill-cat-title">Robotics &amp; ROS</div>
-          <div class="pf-skill-item">ROS2 Humble / Jazzy</div>
-          <div class="pf-skill-item">Nav2 / SLAM Toolbox</div>
-          <div class="pf-skill-item">Gazebo</div>
-          <div class="pf-skill-item" data-fr="Cinématique directe / inverse" data-en="Forward / Inverse Kinematics">Cinématique directe / inverse</div>
-          <div class="pf-skill-item" data-fr="Régulation PID" data-en="PID Control">Régulation PID</div>
-          <div class="pf-skill-item" data-fr="Planification de trajectoire" data-en="Path Planning">Planification de trajectoire</div>
-        </div>
-
-        <div class="pf-skill-cat pf-fade pf-fade-delay-2">
-          <div class="pf-skill-cat-title"
-            data-fr="Systèmes Embarqués" data-en="Embedded Systems">Systèmes Embarqués</div>
-          <div class="pf-skill-item">Arduino / ESP32</div>
-          <div class="pf-skill-item">C / C++</div>
-          <div class="pf-skill-item">VHDL / FPGA</div>
-          <div class="pf-skill-item">Raspberry Pi</div>
-          <div class="pf-skill-item">MicroPython</div>
-        </div>
-
-        <div class="pf-skill-cat pf-fade pf-fade-delay-3">
-          <div class="pf-skill-cat-title"
-            data-fr="Langages" data-en="Programming Languages">Langages</div>
-          <div class="pf-skill-item">Python</div>
-          <div class="pf-skill-item">C / C++</div>
-          <div class="pf-skill-item">HTML / CSS</div>
-          <div class="pf-skill-item">Arduino (C++)</div>
-          <div class="pf-skill-item">Fortran 90</div>
-        </div>
-
-        <div class="pf-skill-cat pf-fade pf-fade-delay-1">
-          <div class="pf-skill-cat-title"
-            data-fr="Électronique &amp; Simulation" data-en="Electronics &amp; Simulation">Électronique &amp; Simulation</div>
-          <div class="pf-skill-item">Proteus</div>
-          <div class="pf-skill-item">Logisim</div>
-          <div class="pf-skill-item">Quartus II</div>
-          <div class="pf-skill-item">ModelSim</div>
-          <div class="pf-skill-item">Fritzing</div>
-          <div class="pf-skill-item">WinCupl</div>
-        </div>
-
-        <div class="pf-skill-cat pf-fade pf-fade-delay-2">
-          <div class="pf-skill-cat-title"
-            data-fr="Modélisation &amp; Conception" data-en="Modeling &amp; Design">Modélisation &amp; Conception</div>
-          <div class="pf-skill-item">MATLAB</div>
-          <div class="pf-skill-item">Autodesk Fusion 360</div>
-          <div class="pf-skill-item">AutoCAD</div>
-        </div>
-
-        <div class="pf-skill-cat pf-fade pf-fade-delay-3">
-          <div class="pf-skill-cat-title"
-            data-fr="DevOps &amp; Outils" data-en="DevOps &amp; Tools">DevOps &amp; Outils</div>
-          <div class="pf-skill-item">Git / GitHub</div>
-          <div class="pf-skill-item">Docker</div>
-          <div class="pf-skill-item">Linux</div>
-        </div>
-
-      </div>
-    </section>
-  </div>
-
-  <!-- ═══════ PROJECTS ═══════ -->
-  <div class="pf-inner">
-    <section class="pf-section" id="projects">
-      <div class="pf-section-header pf-fade">
-        <h2 class="pf-section-title"
-          data-fr="Projets &amp; Contributions"
-          data-en="Projects &amp; Contributions">Projets &amp; Contributions</h2>
-        <div class="pf-section-line"></div>
-      </div>
-      <div class="pf-projects-grid">
-
-        <div class="pf-project-card pf-fade pf-fade-delay-1">
-          <div class="pf-project-img">
-            <!-- REMPLACE : <img src="img/faucon.png" alt="Faucon MA64"> -->
-            <img src="faucon.png" alt="Faucon">
-          </div>
-          <div class="pf-project-type">ROS2 · Agriculture <span class="pf-contrib-badge">contribution</span></div>
-          <div class="pf-project-title">Faucon MA64</div>
-          <div class="pf-project-desc"
-            data-fr="Robot mobile + drone pour surveillance de champs de maïs en simulation. Détection de zones et planification de trajectoire autonome."
-            data-en="Mobile robot + drone for simulated maize field monitoring. Zone detection and autonomous trajectory planning.">
-            Robot mobile + drone pour surveillance de champs de maïs en simulation. Détection de zones et planification de trajectoire autonome.
-          </div>
-          <div class="pf-tags"><span class="pf-tag">ROS2</span><span class
-            ="pf-tag">Gazebo</span><span class="pf-tag">Drone</span></div>
-          <!-- REMPLACE href="#" par le vrai lien GitHub -->
-          <div class="pf-project-links"><a class="pf-link" href="#" target="_blank">▸ GitHub</a></div>
-        </div>
-
-        <div class="pf-project-card pf-fade pf-fade-delay-2">
-          <div class="pf-project-img">
-            <!-- REMPLACE : <img src="img/robot_indoor.png" alt="Robot Indoor"> -->
-            <img src="robot_indoor.png" alt="Robot_indoor">
-          </div>
-          <div class="pf-project-type">Robotics · ROS2 <span class="pf-contrib-badge">contribution</span></div>
-          <div class="pf-project-title">Robot_indoor</div>
-          <div class="pf-project-desc"
-            data-fr="Navigation autonome indoor avec ROS2, Nav2, SLAM Toolbox. Système actor-follower avec Theta* et Pure Pursuit Control."
-            data-en="Indoor autonomous navigation with ROS2, Nav2, SLAM Toolbox. Actor-follower system using Theta* and Pure Pursuit Control.">
-            Navigation autonome indoor avec ROS2, Nav2, SLAM Toolbox. Système actor-follower avec Theta* et Pure Pursuit Control.
-          </div>
-          <div class="pf-tags"><span class="pf-tag">ROS2</span><span class="pf-tag">Python</span><span class="pf-tag">Gazebo</span><span class="pf-tag">Nav2</span></div>
-          <div class="pf-project-links"><a class="pf-link" href="https://github.com/themasterofarts/Robot_indoor" target="_blank">▸ GitHub</a></div>
-        </div>
-
-        <div class="pf-project-card pf-fade pf-fade-delay-3">
-          <div class="pf-project-img">
-            <!-- REMPLACE : <img src="img/xarm.png" alt="Pick and Place"> -->
-            <img src="x_arm.jpg" alt="X_arm">
-          </div>
-          <div class="pf-project-type">Robotique · Vision <span class="pf-contrib-badge">contribution</span></div>
-          <div class="pf-project-title">Pick &amp; Place — X-arm</div>
-          <div class="pf-project-desc"
-            data-fr="Détection d'objets par vision et saisie automatisée avec bras robotique Hiwonder X-arm."
-            data-en="Object detection by computer vision and automated pick-and-place with Hiwonder X-arm robotic arm.">
-            Détection d'objets par vision et saisie automatisée avec bras robotique Hiwonder X-arm.
-          </div>
-          <div class="pf-tags"><span class="pf-tag">Python</span><span class="pf-tag">OpenCV</span><span class="pf-tag">X-arm</span></div>
-          <!-- REMPLACE href="#" par le vrai lien GitHub -->
-          <div class="pf-project-links"><a class="pf-link" href="#" target="_blank">▸ GitHub</a></div>
-        </div>
-
-        <div class="pf-project-card pf-fade pf-fade-delay-1">
-          <div class="pf-project-img">
-            <!-- REMPLACE : <img src="img/drone.png" alt="Drone DJI Tello"> -->
-            <img src="drone.jpeg" alt="Drone">
-          </div>
-          <div class="pf-project-type">Vision · PID Control</div>
-          <div class="pf-project-title">Drone Suiveur — DJI Tello</div>
-          <div class="pf-project-desc"
-            data-fr="Détection et suivi de personnes en temps réel par vision par ordinateur. Régulateur PID pour stabilisation et suivi dynamique."
-            data-en="Real-time person detection and tracking using computer vision. PID controller for stabilization and dynamic tracking.">
-            Détection et suivi de personnes en temps réel par vision par ordinateur. Régulateur PID pour stabilisation et suivi dynamique.
-          </div>
-          <div class="pf-tags"><span class="pf-tag">Python</span><span class="pf-tag">OpenCV</span><span class="pf-tag">PID</span><span class="pf-tag">DJI Tello</span></div>
-          <!-- REMPLACE href="#" par le vrai lien GitHub -->
-          <div class="pf-project-links"><a class="pf-link" href="#" target="_blank">▸ GitHub</a></div>
-        </div>
-
-        <div class="pf-project-card pf-fade pf-fade-delay-2">
-          <div class="pf-project-img">
-            <!-- REMPLACE : <img src="img/ardux.png" alt="ArduX"> -->
-            <img src="ardux.png" alt="ArduX">
-          </div>
-          <div class="pf-project-type">Embedded · Game Console</div>
-          <div class="pf-project-title">ArduX</div>
-          <div class="pf-project-desc"
-            data-fr="Console retro-gaming DIY sur ESP32 TTGO T-Display — Snake, Pong, Space Invaders, Dino Run, Breakout, Morpion. Codé from scratch en C++."
-            data-en="DIY retro-gaming console on ESP32 TTGO T-Display — Snake, Pong, Space Invaders, Dino Run, Breakout, Tic-Tac-Toe. Written from scratch in C++.">
-            Console retro-gaming DIY sur ESP32 TTGO T-Display — Snake, Pong, Space Invaders, Dino Run, Breakout, Morpion. Codé from scratch en C++.
-          </div>
-          <div class="pf-tags"><span class="pf-tag">ESP32</span><span class="pf-tag">C++</span><span class="pf-tag">TFT Display</span></div>
-          <div class="pf-project-links"><a class="pf-link" href="https://github.com/peace-fiacre/ArduX_Project" target="_blank">▸ GitHub</a></div>
-        </div>
-
-        <div class="pf-project-card pf-fade pf-fade-delay-3">
-          <div class="pf-project-img">
-            <!-- REMPLACE : <img src="img/pwm.png" alt="PWM FPGA"> -->
-            <img src="fpga.png" alt="ArduX">
-          </div>
-          <div class="pf-project-type">FPGA · VHDL</div>
-          <div class="pf-project-title">PWM Generator FPGA</div>
-          <div class="pf-project-desc"
-            data-fr="Générateur PWM configurable sur FPGA avec modèle comportemental SG90 en VHDL et animation Python des sorties VCD."
-            data-en="Configurable PWM generator on FPGA with VHDL behavioral SG90 model and Python-based VCD output animation.">
-            Générateur PWM configurable sur FPGA avec modèle comportemental SG90 en VHDL et animation Python des sorties VCD.
-          </div>
-          <div class="pf-tags"><span class="pf-tag">VHDL</span><span class="pf-tag">Quartus II</span><span class="pf-tag">ModelSim</span><span class="pf-tag">Python</span></div>
-          <!-- REMPLACE href="#" par le vrai lien GitHub -->
-          <div class="pf-project-links"><a class="pf-link" href="#" target="_blank">▸ GitHub</a></div>
-        </div>
-
-      </div>
-    </section>
-  </div>
-
-  <!-- ═══════ FORMATION ═══════ -->
-  <div class="pf-inner">
-    <section class="pf-section" id="education">
-      <div class="pf-section-header pf-fade">
-        <h2 class="pf-section-title"
-          data-fr="Formation &amp; Expériences"
-          data-en="Education &amp; Experience">Formation &amp; Expériences</h2>
-        <div class="pf-section-line"></div>
-      </div>
-      <div class="pf-timeline">
-
-        <div class="pf-tl-item pf-fade pf-fade-delay-1">
-          <div class="pf-tl-dot"></div>
-          <div class="pf-tl-year">2023 — <span data-fr="PRÉSENT" data-en="PRESENT">PRÉSENT</span></div>
-          <div class="pf-tl-title" data-fr="Cycle Ingénieur — Génie Électrique" data-en="Engineering Degree — Electrical Engineering">Cycle Ingénieur — Génie Électrique</div>
-          <div class="pf-tl-place">EPAC — Université d'Abomey-Calavi, Bénin</div>
-        </div>
-
-        <div class="pf-tl-item pf-fade pf-fade-delay-2">
-          <div class="pf-tl-dot"></div>
-          <div class="pf-tl-year">2023</div>
-          <div class="pf-tl-title" data-fr="Baccalauréat F3 · Diplôme du Technicien" data-en="F3 Baccalaureate · Technician Diploma">Baccalauréat F3 · Diplôme du Technicien</div>
-          <div class="pf-tl-place">LTP / PN, Bénin</div>
-        </div>
-
-        <div class="pf-tl-item pf-fade pf-fade-delay-3">
-          <div class="pf-tl-dot"></div>
-          <div class="pf-tl-year">2022</div>
-          <div class="pf-tl-title" data-fr="CAP Électrotechnique" data-en="CAP Electrical Engineering">CAP Électrotechnique</div>
-          <div class="pf-tl-place">LTP / PN, Bénin</div>
-        </div>
-
-        <div class="pf-tl-item pf-fade pf-fade-delay-1">
-          <div class="pf-tl-dot"></div>
-          <div class="pf-tl-year">Juil — Août 2024</div>
-          <div class="pf-tl-title"
-            data-fr="École d'été sur l'Intelligence Artificielle (EEIA)"
-            data-en="AI Summer School (EEIA)">École d'été sur l'Intelligence Artificielle (EEIA)</div>
-          <div class="pf-tl-place">Bibliothèque Bénin Excellence, Godomey</div>
-          <div class="pf-tl-desc"
-            data-fr="Python avancé, Machine Learning supervisé et non supervisé, ateliers capteurs et microcontrôleurs."
-            data-en="Advanced Python, supervised and unsupervised Machine Learning, sensors and microcontrollers workshops.">
-            Python avancé, Machine Learning supervisé et non supervisé, ateliers capteurs et microcontrôleurs.
-          </div>
-        </div>
-
-        <div class="pf-tl-item pf-fade pf-fade-delay-2">
-          <div class="pf-tl-dot"></div>
-          <div class="pf-tl-year">2025</div>
-          <div class="pf-tl-title">NASA Space Apps Challenge 2025</div>
-          <div class="pf-tl-place">NASA / International</div>
-          <div class="pf-tl-desc"
-            data-fr="Travail en équipe pour identifier des exoplanètes à l'aide de l'intelligence artificielle."
-            data-en="Team collaboration to identify exoplanets using artificial intelligence.">
-            Travail en équipe pour l'identification des exoplanètes à l'aide de l'intelligence artificielle.
-          </div>
-        </div>
-
-        <div class="pf-tl-item pf-fade pf-fade-delay-3">
-          <div class="pf-tl-dot"></div>
-          <div class="pf-tl-year">2026</div>
-          <div class="pf-tl-title">Arduino Days 2026 — SCOP</div>
-          <div class="pf-tl-place">Cotonou, Bénin</div>
-          <div class="pf-tl-desc"
-            data-fr="Compétition Arduboy avec ArduX. Assemblage et programmation d'un mBot2 pour challenge de suivi de ligne."
-            data-en="Arduboy competition with ArduX. Assembly and programming of an mBot2 for a line-following challenge.">
-            Compétition Arduboy avec ArduX. Assemblage et programmation d'un mBot2 pour challenge de suivi de ligne.
-          </div>
-        </div>
-
-      </div>
-
-      <div class="pf-info-row">
-        <div class="pf-info-badge pf-fade pf-fade-delay-1">
-          <span style="font-size:20px">🚗</span>
-          <div>
-            <span class="pf-info-badge-label" data-fr="PERMIS" data-en="DRIVING LICENSE">PERMIS</span>
-            <div class="pf-info-badge-val" data-fr="Permis B" data-en="Category B">Permis B</div>
-          </div>
-        </div>
-        <div class="pf-info-badge pf-fade pf-fade-delay-2">
-          <span style="font-size:20px">🌐</span>
-          <div>
-            <span class="pf-info-badge-label" data-fr="LANGUES" data-en="LANGUAGES">LANGUES</span>
-            <div class="pf-info-badge-val">Français · Anglais · Nagot</div>
-          </div>
-        </div>
-        <div class="pf-info-badge pf-fade pf-fade-delay-3">
-          <span style="font-size:20px">♟️</span>
-          <div>
-            <span class="pf-info-badge-label" data-fr="LOISIRS" data-en="HOBBIES">LOISIRS</span>
-            <div class="pf-info-badge-val"
-              data-fr="Échecs · Lecture · Musique · Basketball"
-              data-en="Chess · Reading · Music · Basketball">Échecs · Lecture · Musique · Basketball</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ═══════ CONTACT ═══════ -->
-  <div class="pf-inner">
-    <section class="pf-section" id="contact">
-      <div class="pf-section-header pf-fade">
-        <h2 class="pf-section-title"
-          data-fr="Me Contacter"
-          data-en="Get in Touch">Me Contacter</h2>
-        <div class="pf-section-line"></div>
-      </div>
-      <div class="pf-contact-grid">
-        <div>
-          <a class="pf-contact-item pf-fade pf-fade-delay-1" href="mailto:fiacreegoudjobi@gmail.com">
-            <div class="pf-contact-icon">✉️</div>
-            <div>
-              <div class="pf-contact-label">Email</div>
-              <div class="pf-contact-val">fiacreegoudjobi@gmail.com</div>
-            </div>
-          </a>
-          <a class="pf-contact-item pf-fade pf-fade-delay-2" href="tel:+22901460 47997">
-            <div class="pf-contact-icon">📞</div>
-            <div>
-              <div class="pf-contact-label" data-fr="Téléphone" data-en="Phone">Téléphone</div>
-              <div class="pf-contact-val">+229 014 604 7997</div>
-            </div>
-          </a>
-          <div class="pf-contact-item pf-fade pf-fade-delay-3" style="cursor:default;">
-            <div class="pf-contact-icon">📍</div>
-            <div>
-              <div class="pf-contact-label" data-fr="Localisation" data-en="Location">Localisation</div>
-              <div class="pf-contact-val">Abomey-Calavi, Bénin</div>
-            </div>
-          </div>
-        </div>
-        <div class="pf-fade pf-fade-delay-2">
-          <div class="pf-rs-title">// <span data-fr="Réseaux &amp; Profils" data-en="Networks &amp; Profiles">Réseaux &amp; Profils</span></div>
-          <div class="pf-rs-links">
-            <a class="pf-rs-link" href="https://github.com/peace-fiacre" target="_blank">
-              <div class="pf-rs-icon">GH</div>
-              <span class="pf-rs-name">GitHub</span>
-              <span class="pf-rs-handle">peace-fiacre</span>
-            </a>
-            <a class="pf-rs-link" href="www.linkedin.com/in/peace-fiacre-egoudjobi-a86033322" target="_blank">
-              <div class="pf-rs-icon">in</div>
-              <span class="pf-rs-name">LinkedIn</span>
-              <span class="pf-rs-handle">peace-fiacree-goudjobi</span>
-            </a>
-            <a class="pf-rs-link" href="https://www.instagram.com/peace_fiacre/" target="_blank">
-              <div class="pf-rs-icon">IG</div>
-              <span class="pf-rs-name">Instagram</span>
-              <span class="pf-rs-handle">@peace_fiacre</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- FOOTER -->
-  <footer class="pf-footer">
-    <div class="pf-footer-logo">P<span>.</span>FIACRE</div>
-    <div class="pf-status">
-      <div class="pf-status-dot"></div>
-      <span data-fr="Disponible pour opportunités" data-en="Open to opportunities">Disponible pour opportunités</span>
     </div>
-    <div class="pf-footer-copy">© 2026 EGOUDJOBI Peace Fiacre</div>
-  </footer>
 
+    <p class="pf-hero-desc pf-fade pf-fade-delay-3"
+      data-fr="Élève ingénieur en Génie Électrique à l'EPAC (UAC), Bénin. Animé par la conviction que les mathématiques et l'ingénierie sont des leviers puissants pour résoudre des problèmes concrets, je conçois des systèmes embarqués, robotiques et intelligents. Passionné par la robotique, l'IA et les sciences aérospatiales. Membre de Sirius Space Association et MA64 Robotics."
+      data-en="Electrical Engineering student at EPAC (UAC), Benin. Driven by the conviction that mathematics and engineering are powerful tools for solving real-world problems, I design embedded, robotic and intelligent systems. Passionate about robotics, AI and aerospace sciences. Member of Sirius Space Association and MA64 Robotics.">
+      Élève ingénieur en Génie Électrique à l'EPAC (UAC), Bénin. Animé par la conviction que les mathématiques et l'ingénierie sont des leviers puissants pour résoudre des problèmes concrets, je conçois des systèmes embarqués, robotiques et intelligents. Passionné par la robotique, l'IA et les sciences aérospatiales. Membre de Sirius Space Association et MA64 Robotics.
+    </p>
+    <div class="pf-orgs pf-fade pf-fade-delay-4">
+      <span class="pf-org-badge">Sirius Space Association</span>
+      <span class="pf-org-badge">MA64 Robotics</span>
+    </div>
+    <blockquote class="pf-quote pf-fade pf-fade-delay-4">
+      "Some watch the future. Engineers build it."
+    </blockquote>
+    <div class="pf-btns pf-fade pf-fade-delay-5">
+      <a class="pf-btn accent" href="Mon_CV_Peace_2026.pdf"
+        data-fr="Télécharger CV" data-en="Download CV">Télécharger CV</a>
+      <a class="pf-btn" href="https://github.com/peace-fiacre" target="_blank">GitHub</a>
+    </div>
+  </div>
+
+  <!-- Photo unique : colonne droite sur desktop, dans la hero-top-row sur mobile via CSS -->
+  <div class="pf-photo-frame pf-fade pf-fade-delay-3" id="photoUnique">
+    <div class="pf-photo-box">
+      <img class="pf-photo-img" src="Ma_photo.png" alt="Peace Fiacre EGOUDJOBI" style="display:block;" />
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════ SKILLS ═══════ -->
+<div class="pf-inner">
+<section class="pf-section" id="skills">
+  <div class="pf-section-header pf-fade">
+    <h2 class="pf-section-title"
+      data-fr="Compétences Techniques"
+      data-en="Technical Skills">Compétences Techniques</h2>
+    <div class="pf-section-line"></div>
+  </div>
+  <div class="pf-skills-grid">
+    <div class="pf-skill-cat pf-fade pf-fade-delay-1">
+      <div class="pf-skill-cat-title">Robotics &amp; ROS</div>
+      <div class="pf-skill-item">ROS2 Humble / Jazzy</div>
+      <div class="pf-skill-item">Nav2 / SLAM Toolbox</div>
+      <div class="pf-skill-item">Gazebo</div>
+      <div class="pf-skill-item" data-fr="Cinématique directe / inverse" data-en="Forward / Inverse Kinematics">Cinématique directe / inverse</div>
+      <div class="pf-skill-item" data-fr="Régulation PID" data-en="PID Control">Régulation PID</div>
+      <div class="pf-skill-item" data-fr="Planification de trajectoire" data-en="Path Planning">Planification de trajectoire</div>
+    </div>
+    <div class="pf-skill-cat pf-fade pf-fade-delay-2">
+      <div class="pf-skill-cat-title"
+        data-fr="Systèmes Embarqués" data-en="Embedded Systems">Systèmes Embarqués</div>
+      <div class="pf-skill-item">Arduino / ESP32</div>
+      <div class="pf-skill-item">C / C++</div>
+      <div class="pf-skill-item">VHDL / FPGA</div>
+      <div class="pf-skill-item">Raspberry Pi</div>
+      <div class="pf-skill-item">MicroPython</div>
+    </div>
+    <div class="pf-skill-cat pf-fade pf-fade-delay-3">
+      <div class="pf-skill-cat-title"
+        data-fr="Langages" data-en="Programming Languages">Langages</div>
+      <div class="pf-skill-item">Python</div>
+      <div class="pf-skill-item">C / C++</div>
+      <div class="pf-skill-item">HTML / CSS</div>
+      <div class="pf-skill-item">Arduino (C++)</div>
+      <div class="pf-skill-item">Fortran 90</div>
+    </div>
+    <div class="pf-skill-cat pf-fade pf-fade-delay-1">
+      <div class="pf-skill-cat-title"
+        data-fr="Électronique &amp; Simulation" data-en="Electronics &amp; Simulation">Électronique &amp; Simulation</div>
+      <div class="pf-skill-item">Proteus</div>
+      <div class="pf-skill-item">Logisim</div>
+      <div class="pf-skill-item">Quartus II</div>
+      <div class="pf-skill-item">ModelSim</div>
+      <div class="pf-skill-item">Fritzing</div>
+      <div class="pf-skill-item">WinCupl</div>
+    </div>
+    <div class="pf-skill-cat pf-fade pf-fade-delay-2">
+      <div class="pf-skill-cat-title"
+        data-fr="Modélisation &amp; Conception" data-en="Modeling &amp; Design">Modélisation &amp; Conception</div>
+      <div class="pf-skill-item">MATLAB</div>
+      <div class="pf-skill-item">Autodesk Fusion 360</div>
+      <div class="pf-skill-item">AutoCAD</div>
+    </div>
+    <div class="pf-skill-cat pf-fade pf-fade-delay-3">
+      <div class="pf-skill-cat-title"
+        data-fr="DevOps &amp; Outils" data-en="DevOps &amp; Tools">DevOps &amp; Outils</div>
+      <div class="pf-skill-item">Git / GitHub</div>
+      <div class="pf-skill-item">Docker</div>
+      <div class="pf-skill-item">Linux</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════ PROJECTS ═══════ -->
+<div class="pf-inner">
+<section class="pf-section" id="projects">
+  <div class="pf-section-header pf-fade">
+    <h2 class="pf-section-title"
+      data-fr="Projets &amp; Contributions"
+      data-en="Projects &amp; Contributions">Projets &amp; Contributions</h2>
+    <div class="pf-section-line"></div>
+  </div>
+  <div class="pf-projects-grid">
+    <div class="pf-project-card pf-fade pf-fade-delay-1">
+      <div class="pf-project-img">
+        <img src="faucon.png" alt="Faucon">
+      </div>
+      <div class="pf-project-type">ROS2 · Agriculture <span class="pf-contrib-badge">contribution</span></div>
+      <div class="pf-project-title">Faucon MA64</div>
+      <div class="pf-project-desc"
+        data-fr="Robot mobile + drone pour surveillance de champs de maïs en simulation. Détection de zones et planification de trajectoire autonome."
+        data-en="Mobile robot + drone for simulated maize field monitoring. Zone detection and autonomous trajectory planning.">
+        Robot mobile + drone pour surveillance de champs de maïs en simulation. Détection de zones et planification de trajectoire autonome.
+      </div>
+      <div class="pf-tags"><span class="pf-tag">ROS2</span><span class="pf-tag">Gazebo</span><span class="pf-tag">Drone</span></div>
+      <div class="pf-project-links"><a class="pf-link" href="#" target="_blank">▸ GitHub</a></div>
+    </div>
+    <div class="pf-project-card pf-fade pf-fade-delay-2">
+      <div class="pf-project-img">
+        <img src="robot_indoor.png" alt="Robot_indoor">
+      </div>
+      <div class="pf-project-type">Robotics · ROS2 <span class="pf-contrib-badge">contribution</span></div>
+      <div class="pf-project-title">Robot_indoor</div>
+      <div class="pf-project-desc"
+        data-fr="Navigation autonome indoor avec ROS2, Nav2, SLAM Toolbox. Système actor-follower avec Theta* et Pure Pursuit Control."
+        data-en="Indoor autonomous navigation with ROS2, Nav2, SLAM Toolbox. Actor-follower system using Theta* and Pure Pursuit Control.">
+        Navigation autonome indoor avec ROS2, Nav2, SLAM Toolbox. Système actor-follower avec Theta* et Pure Pursuit Control.
+      </div>
+      <div class="pf-tags"><span class="pf-tag">ROS2</span><span class="pf-tag">Python</span><span class="pf-tag">Gazebo</span><span class="pf-tag">Nav2</span></div>
+      <div class="pf-project-links"><a class="pf-link" href="https://github.com/themasterofarts/Robot_indoor" target="_blank">▸ GitHub</a></div>
+    </div>
+    <div class="pf-project-card pf-fade pf-fade-delay-3">
+      <div class="pf-project-img">
+        <img src="x_arm.jpg" alt="X_arm">
+      </div>
+      <div class="pf-project-type">Robotique · Vision <span class="pf-contrib-badge">contribution</span></div>
+      <div class="pf-project-title">Pick &amp; Place — X-arm</div>
+      <div class="pf-project-desc"
+        data-fr="Détection d'objets par vision et saisie automatisée avec bras robotique Hiwonder X-arm."
+        data-en="Object detection by computer vision and automated pick-and-place with Hiwonder X-arm robotic arm.">
+        Détection d'objets par vision et saisie automatisée avec bras robotique Hiwonder X-arm.
+      </div>
+      <div class="pf-tags"><span class="pf-tag">Python</span><span class="pf-tag">OpenCV</span><span class="pf-tag">X-arm</span></div>
+      <div class="pf-project-links"><a class="pf-link" href="#" target="_blank">▸ GitHub</a></div>
+    </div>
+    <div class="pf-project-card pf-fade pf-fade-delay-1">
+      <div class="pf-project-img">
+        <img src="drone.jpeg" alt="Drone">
+      </div>
+      <div class="pf-project-type">Vision · PID Control</div>
+      <div class="pf-project-title">Drone Suiveur — DJI Tello</div>
+      <div class="pf-project-desc"
+        data-fr="Détection et suivi de personnes en temps réel par vision par ordinateur. Régulateur PID pour stabilisation et suivi dynamique."
+        data-en="Real-time person detection and tracking using computer vision. PID controller for stabilization and dynamic tracking.">
+        Détection et suivi de personnes en temps réel par vision par ordinateur. Régulateur PID pour stabilisation et suivi dynamique.
+      </div>
+      <div class="pf-tags"><span class="pf-tag">Python</span><span class="pf-tag">OpenCV</span><span class="pf-tag">PID</span><span class="pf-tag">DJI Tello</span></div>
+      <div class="pf-project-links"><a class="pf-link" href="#" target="_blank">▸ GitHub</a></div>
+    </div>
+    <div class="pf-project-card pf-fade pf-fade-delay-2">
+      <div class="pf-project-img">
+        <img src="ardux.png" alt="ArduX">
+      </div>
+      <div class="pf-project-type">Embedded · Game Console</div>
+      <div class="pf-project-title">ArduX</div>
+      <div class="pf-project-desc"
+        data-fr="Console retro-gaming DIY sur ESP32 TTGO T-Display — Snake, Pong, Space Invaders, Dino Run, Breakout, Morpion. Codé from scratch en C++."
+        data-en="DIY retro-gaming console on ESP32 TTGO T-Display — Snake, Pong, Space Invaders, Dino Run, Breakout, Tic-Tac-Toe. Written from scratch in C++.">
+        Console retro-gaming DIY sur ESP32 TTGO T-Display — Snake, Pong, Space Invaders, Dino Run, Breakout, Morpion. Codé from scratch en C++.
+      </div>
+      <div class="pf-tags"><span class="pf-tag">ESP32</span><span class="pf-tag">C++</span><span class="pf-tag">TFT Display</span></div>
+      <div class="pf-project-links"><a class="pf-link" href="https://github.com/peace-fiacre/ArduX_Project" target="_blank">▸ GitHub</a></div>
+    </div>
+    <div class="pf-project-card pf-fade pf-fade-delay-3">
+      <div class="pf-project-img">
+        <img src="fpga.png" alt="FPGA">
+      </div>
+      <div class="pf-project-type">FPGA · VHDL</div>
+      <div class="pf-project-title">PWM Generator FPGA</div>
+      <div class="pf-project-desc"
+        data-fr="Générateur PWM configurable sur FPGA avec modèle comportemental SG90 en VHDL et animation Python des sorties VCD."
+        data-en="Configurable PWM generator on FPGA with VHDL behavioral SG90 model and Python-based VCD output animation.">
+        Générateur PWM configurable sur FPGA avec modèle comportemental SG90 en VHDL et animation Python des sorties VCD.
+      </div>
+      <div class="pf-tags"><span class="pf-tag">VHDL</span><span class="pf-tag">Quartus II</span><span class="pf-tag">ModelSim</span><span class="pf-tag">Python</span></div>
+      <div class="pf-project-links"><a class="pf-link" href="#" target="_blank">▸ GitHub</a></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════ FORMATION ═══════ -->
+<div class="pf-inner">
+<section class="pf-section" id="education">
+  <div class="pf-section-header pf-fade">
+    <h2 class="pf-section-title"
+      data-fr="Formation &amp; Expériences"
+      data-en="Education &amp; Experience">Formation &amp; Expériences</h2>
+    <div class="pf-section-line"></div>
+  </div>
+  <div class="pf-timeline">
+    <div class="pf-tl-item pf-fade pf-fade-delay-1">
+      <div class="pf-tl-dot"></div>
+      <div class="pf-tl-year">2023 — <span data-fr="PRÉSENT" data-en="PRESENT">PRÉSENT</span></div>
+      <div class="pf-tl-title" data-fr="Cycle Ingénieur — Génie Électrique" data-en="Engineering Degree — Electrical Engineering">Cycle Ingénieur — Génie Électrique</div>
+      <div class="pf-tl-place">EPAC — Université d'Abomey-Calavi, Bénin</div>
+    </div>
+    <div class="pf-tl-item pf-fade pf-fade-delay-2">
+      <div class="pf-tl-dot"></div>
+      <div class="pf-tl-year">2023</div>
+      <div class="pf-tl-title" data-fr="Baccalauréat F3 · Diplôme du Technicien" data-en="F3 Baccalaureate · Technician Diploma">Baccalauréat F3 · Diplôme du Technicien</div>
+      <div class="pf-tl-place">LTP / PN, Bénin</div>
+    </div>
+    <div class="pf-tl-item pf-fade pf-fade-delay-3">
+      <div class="pf-tl-dot"></div>
+      <div class="pf-tl-year">2022</div>
+      <div class="pf-tl-title" data-fr="CAP Électrotechnique" data-en="CAP Electrical Engineering">CAP Électrotechnique</div>
+      <div class="pf-tl-place">LTP / PN, Bénin</div>
+    </div>
+    <div class="pf-tl-item pf-fade pf-fade-delay-1">
+      <div class="pf-tl-dot"></div>
+      <div class="pf-tl-year">Juil — Août 2024</div>
+      <div class="pf-tl-title"
+        data-fr="École d'été sur l'Intelligence Artificielle (EEIA)"
+        data-en="AI Summer School (EEIA)">École d'été sur l'Intelligence Artificielle (EEIA)</div>
+      <div class="pf-tl-place">Bibliothèque Bénin Excellence, Godomey</div>
+      <div class="pf-tl-desc"
+        data-fr="Python avancé, Machine Learning supervisé et non supervisé, ateliers capteurs et microcontrôleurs."
+        data-en="Advanced Python, supervised and unsupervised Machine Learning, sensors and microcontrollers workshops.">
+        Python avancé, Machine Learning supervisé et non supervisé, ateliers capteurs et microcontrôleurs.
+      </div>
+    </div>
+    <div class="pf-tl-item pf-fade pf-fade-delay-2">
+      <div class="pf-tl-dot"></div>
+      <div class="pf-tl-year">2025</div>
+      <div class="pf-tl-title">NASA Space Apps Challenge 2025</div>
+      <div class="pf-tl-place">NASA / International</div>
+      <div class="pf-tl-desc"
+        data-fr="Travail en équipe pour identifier des exoplanètes à l'aide de l'intelligence artificielle."
+        data-en="Team collaboration to identify exoplanets using artificial intelligence.">
+        Travail en équipe pour l'identification des exoplanètes à l'aide de l'intelligence artificielle.
+      </div>
+    </div>
+    <div class="pf-tl-item pf-fade pf-fade-delay-3">
+      <div class="pf-tl-dot"></div>
+      <div class="pf-tl-year">2026</div>
+      <div class="pf-tl-title">Arduino Days 2026 — SCOP</div>
+      <div class="pf-tl-place">Cotonou, Bénin</div>
+      <div class="pf-tl-desc"
+        data-fr="Compétition Arduboy avec ArduX. Assemblage et programmation d'un mBot2 pour challenge de suivi de ligne."
+        data-en="Arduboy competition with ArduX. Assembly and programming of an mBot2 for a line-following challenge.">
+        Compétition Arduboy avec ArduX. Assemblage et programmation d'un mBot2 pour challenge de suivi de ligne.
+      </div>
+    </div>
+  </div>
+  <div class="pf-info-row">
+    <div class="pf-info-badge pf-fade pf-fade-delay-1">
+      <span style="font-size:20px">🚗</span>
+      <div>
+        <span class="pf-info-badge-label" data-fr="PERMIS" data-en="DRIVING LICENSE">PERMIS</span>
+        <div class="pf-info-badge-val" data-fr="Permis B" data-en="Category B">Permis B</div>
+      </div>
+    </div>
+    <div class="pf-info-badge pf-fade pf-fade-delay-2">
+      <span style="font-size:20px">🌐</span>
+      <div>
+        <span class="pf-info-badge-label" data-fr="LANGUES" data-en="LANGUAGES">LANGUES</span>
+        <div class="pf-info-badge-val">Français · Anglais · Nagot</div>
+      </div>
+    </div>
+    <div class="pf-info-badge pf-fade pf-fade-delay-3">
+      <span style="font-size:20px">♟️</span>
+      <div>
+        <span class="pf-info-badge-label" data-fr="LOISIRS" data-en="HOBBIES">LOISIRS</span>
+        <div class="pf-info-badge-val"
+          data-fr="Échecs · Lecture · Musique · Basketball"
+          data-en="Chess · Reading · Music · Basketball">Échecs · Lecture · Musique · Basketball</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════ CONTACT ═══════ -->
+<div class="pf-inner">
+<section class="pf-section" id="contact">
+  <div class="pf-section-header pf-fade">
+    <h2 class="pf-section-title"
+      data-fr="Me Contacter"
+      data-en="Get in Touch">Me Contacter</h2>
+    <div class="pf-section-line"></div>
+  </div>
+  <div class="pf-contact-grid">
+    <div>
+      <a class="pf-contact-item pf-fade pf-fade-delay-1" href="mailto:fiacreegoudjobi@gmail.com">
+        <div class="pf-contact-icon">✉️</div>
+        <div>
+          <div class="pf-contact-label">Email</div>
+          <div class="pf-contact-val">fiacreegoudjobi@gmail.com</div>
+        </div>
+      </a>
+      <a class="pf-contact-item pf-fade pf-fade-delay-2" href="tel:+22901460 47997">
+        <div class="pf-contact-icon">📞</div>
+        <div>
+          <div class="pf-contact-label" data-fr="Téléphone" data-en="Phone">Téléphone</div>
+          <div class="pf-contact-val">+229 014 604 7997</div>
+        </div>
+      </a>
+      <div class="pf-contact-item pf-fade pf-fade-delay-3" style="cursor:default;">
+        <div class="pf-contact-icon">📍</div>
+        <div>
+          <div class="pf-contact-label" data-fr="Localisation" data-en="Location">Localisation</div>
+          <div class="pf-contact-val">Abomey-Calavi, Bénin</div>
+        </div>
+      </div>
+    </div>
+    <div class="pf-fade pf-fade-delay-2">
+      <div class="pf-rs-title">// <span data-fr="Réseaux &amp; Profils" data-en="Networks &amp; Profiles">Réseaux &amp; Profils</span></div>
+      <div class="pf-rs-links">
+        <a class="pf-rs-link" href="https://github.com/peace-fiacre" target="_blank">
+          <div class="pf-rs-icon">GH</div>
+          <span class="pf-rs-name">GitHub</span>
+          <span class="pf-rs-handle">peace-fiacre</span>
+        </a>
+        <a class="pf-rs-link" href="https://www.linkedin.com/in/peace-fiacre-egoudjobi-a86033322" target="_blank">
+          <div class="pf-rs-icon">in</div>
+          <span class="pf-rs-name">LinkedIn</span>
+          <span class="pf-rs-handle">peace-fiacre-egoudjobi</span>
+        </a>
+        <a class="pf-rs-link" href="https://www.instagram.com/peace_fiacre/" target="_blank">
+          <div class="pf-rs-icon">IG</div>
+          <span class="pf-rs-name">Instagram</span>
+          <span class="pf-rs-handle">@peace_fiacre</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer class="pf-footer">
+  <div class="pf-footer-logo">P<span>.</span>FIACRE</div>
+  <div class="pf-status">
+    <div class="pf-status-dot"></div>
+    <span data-fr="Disponible pour opportunités" data-en="Open to opportunities">Disponible pour opportunités</span>
+  </div>
+  <div class="pf-footer-copy">© 2026 EGOUDJOBI Peace Fiacre</div>
+</footer>
 </div>
 
 <!-- BACK TO TOP -->
@@ -834,86 +875,82 @@
   aria-label="Retour en haut">↑</button>
 
 <script>
-  /* ── LANGUE ── */
-  function setLang(lang) {
-    document.querySelectorAll('[data-fr]').forEach(el => {
-      const val = lang === 'fr' ? el.getAttribute('data-fr') : el.getAttribute('data-en');
-      if (val !== null) el.textContent = val;
-    });
-    ['btn-fr','btn-fr-m'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.classList.toggle('active', lang === 'fr');
-    });
-    ['btn-en','btn-en-m'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.classList.toggle('active', lang === 'en');
-    });
-    document.documentElement.lang = lang;
-    localStorage.setItem('pf-lang', lang);
-  }
-  const savedLang = localStorage.getItem('pf-lang');
-  if (savedLang && savedLang !== 'fr') setLang(savedLang);
-
-  /* ── MENU MOBILE ── */
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-    document.getElementById('hamburger').classList.toggle('open');
-  }
-  function closeMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('open');
-  }
-
-  /* ── SMOOTH SCROLL ── */
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (href === '#') return;
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        const navH = document.querySelector('.pf-nav').offsetHeight;
-        const top  = target.getBoundingClientRect().top + window.scrollY - navH - 16;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
+/* ── LANGUE ── */
+function setLang(lang) {
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    const val = lang === 'fr' ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+    if (val !== null) el.textContent = val;
   });
+  ['btn-fr','btn-fr-m'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', lang === 'fr');
+  });
+  ['btn-en','btn-en-m'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', lang === 'en');
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('pf-lang', lang);
+}
+const savedLang = localStorage.getItem('pf-lang');
+if (savedLang && savedLang !== 'fr') setLang(savedLang);
 
-  /* ── NAV ACTIVE AU SCROLL ── */
-  const sections = ['about','skills','projects','education','contact'];
-  const navLinks = {};
-  sections.forEach(id => { navLinks[id] = document.querySelector(`.pf-nav-center a[href="#${id}"]`); });
+/* ── MENU MOBILE ── */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
 
-  function updateActiveNav() {
-    const navH    = document.querySelector('.pf-nav').offsetHeight + 24;
-    const scrollY = window.scrollY;
-    let current   = sections[0];
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top + window.scrollY - navH <= scrollY) current = id;
-    });
-    sections.forEach(id => {
-      if (navLinks[id]) navLinks[id].classList.toggle('nav-active', id === current);
-    });
-  }
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      const navH = document.querySelector('.pf-nav').offsetHeight;
+      const top  = target.getBoundingClientRect().top + window.scrollY - navH - 16;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
 
-  /* ── BACK TO TOP ── */
-  function updateBackTop() {
-    document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
-  }
+/* ── NAV ACTIVE ── */
+const sections = ['about','skills','projects','education','contact'];
+const navLinks = {};
+sections.forEach(id => { navLinks[id] = document.querySelector(`.pf-nav-center a[href="#${id}"]`); });
+function updateActiveNav() {
+  const navH    = document.querySelector('.pf-nav').offsetHeight + 24;
+  const scrollY = window.scrollY;
+  let current   = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top + window.scrollY - navH <= scrollY) current = id;
+  });
+  sections.forEach(id => {
+    if (navLinks[id]) navLinks[id].classList.toggle('nav-active', id === current);
+  });
+}
 
-  window.addEventListener('scroll', () => { updateActiveNav(); updateBackTop(); }, { passive: true });
-  updateActiveNav();
+/* ── BACK TO TOP ── */
+function updateBackTop() {
+  document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+}
+window.addEventListener('scroll', () => { updateActiveNav(); updateBackTop(); }, { passive: true });
+updateActiveNav();
 
-  /* ── FADE-IN AU SCROLL ── */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.pf-fade').forEach(el => observer.observe(el));
+/* ── FADE-IN ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.pf-fade').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
-
