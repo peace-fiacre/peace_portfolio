@@ -156,7 +156,9 @@ body {
 .pf-btn.accent { background: #2878ff; color: #fff; border-color: #2878ff; }
 .pf-btn.accent:hover { background: #4a90ff; border-color: #4a90ff; }
 .pf-photo-frame { display: flex; justify-content: center; align-items: center; }
-#photoUnique { position: static; width: auto; height: auto; display: flex !important; }
+/* Par défaut sur desktop : photo mobile cachée */
+.pf-hero-photo-mobile { display: none !important; }
+.pf-hero-photo-desktop { display: flex; }
 .pf-photo-box {
   width: 300px; height: 370px; border: 1px solid rgba(40,120,255,0.25);
   background: rgba(40,120,255,0.04);
@@ -320,66 +322,53 @@ body {
   .pf-hamburger { display: flex; }
   .pf-inner { padding: 0 20px; }
 
-  /* HERO */
+  /* HERO : une seule colonne */
   .pf-hero {
-    display: flex;
-    flex-direction: column;
+    display: block;
     padding: 36px 0 40px;
     min-height: unset;
-    gap: 0;
   }
 
-  /* Bloc nom + photo côte à côte */
+  /* Ligne nom + photo : grille 2 colonnes */
   .pf-hero-top-row {
     display: grid;
-    grid-template-columns: 1fr 130px;
-    gap: 16px;
-    align-items: center;
-    margin-bottom: 22px;
+    grid-template-columns: 1fr 120px;
+    gap: 14px;
+    align-items: start;
+    margin-bottom: 20px;
   }
 
-  /* Photo : une seule, repositionnée en absolute dans la hero */
-  .pf-hero {
-    position: relative;
+  /* Photo mobile : visible, taille réduite */
+  .pf-hero-photo-mobile {
+    display: flex !important;
+  }
+  .pf-hero-photo-mobile .pf-photo-box {
+    width: 120px;
+    height: 150px;
   }
 
-  #photoUnique {
-    display: block !important;
-    position: absolute;
-    top: 36px;
-    right: 20px;
-    width: 130px;
-    height: 165px;
-  }
-
-  .pf-photo-box {
-    width: 130px;
-    height: 165px;
-  }
-
-  /* Décaler le texte pour laisser de la place à la photo */
-  .pf-hero > div:first-child {
-    padding-right: 150px;
+  /* Photo desktop : cachée */
+  .pf-hero-photo-desktop {
+    display: none !important;
   }
 
   .pf-hero-tag {
     font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
   }
-  .pf-hero-tag::before { width: 16px; }
+  .pf-hero-tag::before { width: 14px; }
 
   .pf-hero-name {
     font-size: 26px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .pf-hero-sub {
-    font-family: 'Share Tech Mono', monospace;
     font-size: 11px;
-    letter-spacing: 1.5px;
-    color: rgba(232,240,255,0.65);
-    line-height: 1.75;
+    letter-spacing: 1px;
+    color: rgba(232,240,255,0.7);
+    line-height: 1.7;
   }
 
   .pf-hero-desc {
@@ -405,32 +394,18 @@ body {
   .pf-section-title { font-size: 18px; }
 
   /* SKILLS 2 colonnes */
-  .pf-skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
+  .pf-skills-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .pf-skill-cat { padding: 14px 12px; }
   .pf-skill-cat-title { font-size: 9px; letter-spacing: 2px; margin-bottom: 10px; }
-  .pf-skill-item {
-    font-size: 14px;
-    color: rgba(232,240,255,0.9);
-    padding: 5px 0;
-  }
+  .pf-skill-item { font-size: 14px; color: rgba(232,240,255,0.9); padding: 5px 0; }
 
   /* PROJECTS 1 colonne */
   .pf-projects-grid { grid-template-columns: 1fr; gap: 14px; }
   .pf-project-card { padding: 20px; }
   .pf-project-img { height: 110px; }
   .pf-project-title { font-size: 15px; }
-  .pf-project-desc {
-    font-size: 14px;
-    color: rgba(232,240,255,0.82);
-    line-height: 1.65;
-  }
-  .pf-project-type {
-    font-size: 10px;
-    color: rgba(232,240,255,0.55);
-  }
+  .pf-project-desc { font-size: 14px; color: rgba(232,240,255,0.82); line-height: 1.65; }
+  .pf-project-type { font-size: 10px; color: rgba(232,240,255,0.55); }
 
   /* TIMELINE */
   .pf-tl-title { font-size: 15px; }
@@ -444,19 +419,14 @@ body {
   .pf-info-row { flex-direction: column; gap: 10px; }
   .pf-info-badge { width: 100%; }
 
-  .pf-footer {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-    padding: 24px 20px;
-  }
+  .pf-footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
   .pf-status { justify-content: center; }
   .pf-back-top { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 17px; }
 }
 
 @media (max-width: 480px) {
-  .pf-hero-name { font-size: 24px; }
-  .pf-photo-box { width: 110px; height: 140px; }
+  .pf-hero-name { font-size: 22px; }
+  .pf-hero-photo-mobile .pf-photo-box { width: 105px; height: 132px; }
   .pf-skills-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -500,10 +470,13 @@ body {
 <!-- ═══════ ABOUT ═══════ -->
 <div class="pf-inner">
 <section class="pf-hero" id="about">
-  <div>
-    <!-- BLOC NOM + PHOTO côte à côte sur mobile -->
+
+  <!-- Colonne texte (desktop: gauche, mobile: tout) -->
+  <div class="pf-hero-left">
+
+    <!-- Ligne top : texte + photo côte à côte sur mobile -->
     <div class="pf-hero-top-row">
-      <div>
+      <div class="pf-hero-top-text">
         <div class="pf-hero-tag pf-fade"
           data-fr="Élève Ingénieur · Génie Électrique"
           data-en="Engineering Student · Electrical Engineering">
@@ -514,6 +487,12 @@ body {
         </h1>
         <div class="pf-hero-sub pf-fade pf-fade-delay-2">
           Robotique · Systèmes Embarqués · IA · Sciences Aérospatiales
+        </div>
+      </div>
+      <!-- Photo ici dans la top-row, visible sur mobile uniquement via CSS -->
+      <div class="pf-photo-frame pf-hero-photo-mobile pf-fade pf-fade-delay-3">
+        <div class="pf-photo-box">
+          <img class="pf-photo-img" src="Ma_photo.png" alt="Peace Fiacre EGOUDJOBI" style="display:block;" />
         </div>
       </div>
     </div>
@@ -537,12 +516,13 @@ body {
     </div>
   </div>
 
-  <!-- Photo unique : colonne droite sur desktop, dans la hero-top-row sur mobile via CSS -->
-  <div class="pf-photo-frame pf-fade pf-fade-delay-3" id="photoUnique">
+  <!-- Photo desktop : colonne droite, cachée sur mobile -->
+  <div class="pf-photo-frame pf-hero-photo-desktop pf-fade pf-fade-delay-3">
     <div class="pf-photo-box">
       <img class="pf-photo-img" src="Ma_photo.png" alt="Peace Fiacre EGOUDJOBI" style="display:block;" />
     </div>
   </div>
+
 </section>
 </div>
 
