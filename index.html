@@ -891,8 +891,9 @@ function setLang(lang) {
   document.documentElement.lang = lang;
   localStorage.setItem('pf-lang', lang);
 }
+
 const savedLang = localStorage.getItem('pf-lang');
-if (savedLang && savedLang !== 'fr') setLang(savedLang);
+setLang(savedLang || 'en');
 
 /* ── MENU MOBILE ── */
 function toggleMenu() {
